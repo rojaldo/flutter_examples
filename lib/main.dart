@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import raised button
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,25 +40,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
+  String _display = '';
+
+  void onButtonClicked(dynamic value) {
+    print("Button Clicked: $value");
     setState(() {
-      _counter++;
+      this._display = this._display + value.toString();
     });
   }
 
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
-  void _setCounter(int value) {
-    setState(() {
-      _counter = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,29 +57,107 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
+      body: new Container(
+            child:
+              Column(
+      children: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:'              
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4              
-            ),
-            ElevatedButton(
-              onPressed: () => _setCounter(5),
-              child: const Text('Set to 5'),
+          children: [
+            Text("$_display",
+              style: TextStyle(
+                fontSize: 25
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('7'),
+              onPressed: () => onButtonClicked('7'),
+            ),
+            ElevatedButton(
+              child: const Text('8'),
+              onPressed: () => onButtonClicked('8'),
+            ),
+            ElevatedButton(
+              child: const Text('9'),
+              onPressed: () => onButtonClicked('9'),
+            ),
+            ElevatedButton(
+              child: const Text('/'),
+              onPressed: () => onButtonClicked('/'),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('4'),
+              onPressed: () => onButtonClicked('4'),
+            ),
+            ElevatedButton(
+              child: const Text('5'),
+              onPressed: () => onButtonClicked('5'),
+            ),
+            ElevatedButton(
+              child: const Text('6'),
+              onPressed: () => onButtonClicked('6'),
+            ),
+            ElevatedButton(
+              child: const Text('*'),
+              onPressed: () => onButtonClicked('*'),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('1'),
+              onPressed: () => onButtonClicked('1'),
+            ),
+            ElevatedButton(
+              child: const Text('2'),
+              onPressed: () => onButtonClicked('2'),
+            ),
+            ElevatedButton(
+              child: const Text('3'),
+              onPressed: () => onButtonClicked('3'),
+            ),
+            ElevatedButton(
+              child: const Text('-'),
+              onPressed: () => onButtonClicked('-'),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('c'),
+              onPressed: () => onButtonClicked('c'),
+            ),
+            ElevatedButton(
+              child: const Text('0'),
+              onPressed: () => onButtonClicked('0'),
+            ),
+            ElevatedButton(
+              child: const Text('='),
+              onPressed: () => onButtonClicked('='),
+            ),
+            ElevatedButton(
+              child: const Text('+'),
+              onPressed: () => onButtonClicked('+'),
+            ), // ElevatedButton
+          ], // <Widget>[] children of Row
+        ), // Row
+      ], // <Widget>[] children of Column
+    ), // Column
+      ), // Container
+      ); // Scaffold
+  } // Widget build
+} // class _MyHomePageState
