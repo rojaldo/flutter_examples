@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 enum States {
   init,
   firstFigure,
@@ -6,17 +8,17 @@ enum States {
 }
 
 class CalculatorEngine {
-    States _state = States.init;
-    num _firstFigure = 0;
-    num _secondFigure = 0;
-    num _result = 0;
-    String _operator = '';
-    String _display = '';
+  States _state = States.init;
+  num _firstFigure = 0;
+  num _secondFigure = 0;
+  num _result = 0;
+  String _operator = '';
+  String _display = '';
 
-    CalculatorEngine() {}
+  CalculatorEngine() {}
 
-      num _calculate(){
-    switch(this._operator){
+  num _calculate() {
+    switch (this._operator) {
       case '+':
         return _firstFigure + _secondFigure;
       case '-':
@@ -31,25 +33,25 @@ class CalculatorEngine {
   }
 
   String processSymbol(String symbol) {
-    switch(this._state) {
+    switch (this._state) {
       case States.init:
         break;
       case States.firstFigure:
-        if(symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/') {
+        if (symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/') {
           this._operator = symbol;
           this._display += symbol;
           this._state = States.secondFigure;
         }
         break;
       case States.secondFigure:
-        if(symbol == '=') {
+        if (symbol == '=') {
           this._result = this._calculate();
           this._display += symbol + this._result.toString();
           this._state = States.result;
         }
         break;
       case States.result:
-        if(symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/') {
+        if (symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/') {
           this._operator = symbol;
           this._firstFigure = this._result;
           this._secondFigure = 0;
@@ -60,16 +62,14 @@ class CalculatorEngine {
         break;
       default:
         throw Exception('Unknown state');
-        break;
     }
     return this._display;
   }
 
   String processNumber(int number) {
     print(this._state.toString() + ' : ' + States.init.toString());
-    switch(this._state) {
+    switch (this._state) {
       case States.init:
-
         this._display = number.toString();
         this._firstFigure = number;
         this._state = States.firstFigure;
