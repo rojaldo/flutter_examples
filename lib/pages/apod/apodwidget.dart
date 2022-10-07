@@ -20,7 +20,7 @@ class _ApodWidgetState extends State<ApodWidget> {
   }
 
   void _getApod() {
-    String key = 'tqz634Z1x0LiJzjbhSyUoExrZaGKLM0MG1VnROR6';
+    String key = 'DEMO_KEY';
     String url = 'https://api.nasa.gov/planetary/apod?api_key=$key';
     _fetchData(url).then((response) {
       setState(() {
