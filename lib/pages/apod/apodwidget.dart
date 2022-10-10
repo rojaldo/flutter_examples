@@ -14,6 +14,7 @@ class ApodWidget extends StatefulWidget {
 class _ApodWidgetState extends State<ApodWidget> {
   String _code = '';
   Apod _apod = Apod();
+  dynamic _selectedDate = DateTime.now();
 
   Future<http.Response> _fetchData(String url) {
     return http.get(Uri.parse(url));
@@ -31,6 +32,28 @@ class _ApodWidgetState extends State<ApodWidget> {
     });
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: _selectedDate,
+        firstDate: DateTime(1995, 6, 15),
+        lastDate: DateTime.now());
+    if (pickedDate != null) {
+      setState(() {
+        _selectedDate = pickedDate;
+        _getApod(pickedDate.toString().substring(0, 10));
+      });
+    }
+  }
+
+  // _selectDate(DateTime? date) {
+  //   if (date != null) {
+  //     _selectedDate.value = date;
+  //     print(_selectedDate.value);
+  //     // _getApod();
+  //   }
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -42,19 +65,28 @@ class _ApodWidgetState extends State<ApodWidget> {
       return const Center(child: CircularProgressIndicator());
     } else {
       return Center(
-        child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: const Icon(Icons.image),
-                title: Text(_apod.title),
-                subtitle: Text(_apod.date.toString()),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => _selectDate(context),
+              child: Text('Select date'),
+            ),
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: const Icon(Icons.image),
+                    title: Text(_apod.title),
+                    subtitle: Text(_apod.date.toString()),
+                  ),
+                  Image.network(_apod.url),
+                  Text(_apod.explanation),
+                ],
               ),
-              Image.network(_apod.url),
-              Text(_apod.explanation),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     }
