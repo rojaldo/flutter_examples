@@ -1,39 +1,51 @@
 class Apod {
-  Apod({
-    this.date,
-    this.explanation,
-    this.hdurl,
-    this.mediaType,
-    this.serviceVersion,
-    this.title,
-    this.url,
-  });
+  Apod([
+    this._date,
+    this._explanation,
+    this._hdurl,
+    this._mediaType,
+    this._serviceVersion,
+    this._title,
+    this._url,
+  ]);
 
-  DateTime? date;
-  String? explanation;
-  String? hdurl;
-  String? mediaType;
-  String? serviceVersion;
-  String? title;
-  String? url;
+  DateTime? _date;
+  String? _explanation;
+  String? _hdurl;
+  String? _mediaType;
+  String? _serviceVersion;
+  String? _title;
+  String? _url;
 
   factory Apod.fromJson(Map<String, dynamic> json) => Apod(
-        date: DateTime.parse(json["date"]),
-        explanation: json["explanation"],
-        hdurl: json["hdurl"],
-        mediaType: json["media_type"],
-        serviceVersion: json["service_version"],
-        title: json["title"],
-        url: json["url"],
+        DateTime.parse(json["date"]),
+        json["explanation"],
+        json["hdurl"],
+        json["media_type"],
+        json["service_version"],
+        json["title"],
+        json["url"],
       );
 
+  get date => _date;
+  get explanation => _explanation;
+  get hdurl => _hdurl;
+  get mediaType => _mediaType;
+  get serviceVersion => _serviceVersion;
+  get title => _title;
+  get url => _url;
+
   Map<String, dynamic> toJson() => {
-        "date": date!.toIso8601String(),
-        "explanation": explanation,
-        "hdurl": hdurl,
-        "media_type": mediaType,
-        "service_version": serviceVersion,
-        "title": title,
-        "url": url,
+        "date": _date!.toIso8601String(),
+        "explanation": _explanation,
+        "hdurl": _hdurl,
+        "media_type": _mediaType,
+        "service_version": _serviceVersion,
+        "title": _title,
+        "url": _url,
       };
+
+  bool isEmpty() {
+    return _date == null;
+  }
 }

@@ -19,9 +19,10 @@ class _ApodWidgetState extends State<ApodWidget> {
     return http.get(Uri.parse(url));
   }
 
-  void _getApod() {
-    String key = 'DEMO_KEY';
-    String url = 'https://api.nasa.gov/planetary/apod?api_key=$key';
+  void _getApod([dateString = '']) {
+    String key = 'tqz634Z1x0LiJzjbhSyUoExrZaGKLM0MG1VnROR6';
+    String url =
+        'https://api.nasa.gov/planetary/apod?api_key=$key&date=$dateString';
     _fetchData(url).then((response) {
       setState(() {
         _code = response.statusCode.toString();
@@ -36,10 +37,31 @@ class _ApodWidgetState extends State<ApodWidget> {
     _getApod();
   }
 
+  Widget _apodStructure() {
+    if (_apod.isEmpty()) {
+      return const Center(child: CircularProgressIndicator());
+    } else {
+      return Center(
+        child: Card(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(Icons.image),
+                title: Text(_apod.title),
+                subtitle: Text(_apod.date.toString()),
+              ),
+              Image.network(_apod.url),
+              Text(_apod.explanation),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Apod: ${_apod.title}'),
-    );
+    return _apodStructure();
   }
 }
