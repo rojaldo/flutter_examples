@@ -46,18 +46,20 @@ class _ApodWidgetState extends State<ApodWidget> {
     }
   }
 
-  // _selectDate(DateTime? date) {
-  //   if (date != null) {
-  //     _selectedDate.value = date;
-  //     print(_selectedDate.value);
-  //     // _getApod();
-  //   }
-  // }
-
   @override
   void initState() {
     super.initState();
     _getApod();
+  }
+
+  Widget _showMedia() {
+    if (_apod.isImage) {
+      return Image.network(_apod.url);
+    } else if (_apod.isVideo) {
+      return const Text('Video');
+    } else {
+      return const Text('Unknown');
+    }
   }
 
   Widget _apodStructure() {
@@ -70,7 +72,7 @@ class _ApodWidgetState extends State<ApodWidget> {
           children: [
             ElevatedButton(
               onPressed: () => _selectDate(context),
-              child: Text('Select date'),
+              child: const Text('Select date'),
             ),
             Card(
               child: Column(
@@ -81,7 +83,7 @@ class _ApodWidgetState extends State<ApodWidget> {
                     title: Text(_apod.title),
                     subtitle: Text(_apod.date.toString()),
                   ),
-                  Image.network(_apod.url),
+                  _showMedia(),
                   Text(_apod.explanation),
                 ],
               ),

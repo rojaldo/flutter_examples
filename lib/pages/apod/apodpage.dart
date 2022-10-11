@@ -10,6 +10,11 @@ class Apodpage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Apod Sample'),
         ),
-        body: const ApodWidget()); // Scaffold
+        body: const ApodWidget(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          tooltip: 'Increment',
+          child: const Icon(Icons.calendar_month),
+        )); // Scaffold
   }
 }

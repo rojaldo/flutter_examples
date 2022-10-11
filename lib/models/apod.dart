@@ -34,6 +34,8 @@ class Apod {
   get serviceVersion => _serviceVersion;
   get title => _title;
   get url => _url;
+  get isImage => _mediaType == 'image';
+  get isVideo => _mediaType == 'video';
 
   Map<String, dynamic> toJson() => {
         "date": _date!.toIso8601String(),
