@@ -21,8 +21,6 @@ class _NewBookState extends State<NewBook> {
   }
 
   _sendBook(BuildContext context) {
-    // get the values from the text fields
-
     // send the values to the server
     String url = 'http://localhost:8080/api/v0/books';
     http.post(Uri.parse(url), body: {
@@ -41,8 +39,11 @@ class _NewBookState extends State<NewBook> {
         ));
       }
     });
-    // go back to the previous page
-    Navigator.pop(context);
+    // go back to the previous page with the new book object
+    Navigator.pop(context, {
+      'title': _titleController.text,
+      'author': _authorController.text,
+    });
   }
 
   @override
