@@ -3,6 +3,7 @@ import 'package:flutter_sample/pages/apod/apodpage.dart';
 import 'package:flutter_sample/pages/beers/beerspage.dart';
 import './pages/calculator/calculatorpage.dart';
 import 'pages/heroes/heroespage.dart';
+import 'pages/mylibrary/librarypage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const BeersPage());
+        home: const LibraryPage());
   }
 }
