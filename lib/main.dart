@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/pages/apod/apodpage.dart';
 import 'package:flutter_sample/pages/beers/beerspage.dart';
+import 'package:flutter_sample/pages/qr/qrpage.dart';
 import './pages/calculator/calculatorpage.dart';
 import 'pages/heroes/heroespage.dart';
 import 'pages/mylibrary/librarypage.dart';
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const LibraryPage());
+        home: const QrPage());
   }
 }
