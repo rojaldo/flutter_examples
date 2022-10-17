@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/pages/apod/apodpage.dart';
 import 'package:flutter_sample/pages/beers/beerspage.dart';
+import 'package:flutter_sample/pages/camera/cameraapp.dart';
+import 'package:flutter_sample/pages/fingerprint/fingerprint.dart';
+import 'package:flutter_sample/pages/geolocation/geolocationpage.dart';
 import 'package:flutter_sample/pages/qr/qrpage.dart';
 import './pages/calculator/calculatorpage.dart';
 import 'pages/heroes/heroespage.dart';
@@ -14,6 +17,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,6 +25,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const QrPage());
+        home: CameraApp());
   }
 }

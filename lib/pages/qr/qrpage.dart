@@ -12,9 +12,14 @@ class QrPage extends StatefulWidget {
 class _QrPageState extends State<QrPage> {
   _onClicked() {
     // go to qrviewexample
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const QRViewExample(),
-    ));
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context) => const QRViewExample(message: 'Scan this QR code'),
+    ))
+        .then((value) {
+      print('value: $value');
+      setState(() {});
+    });
   }
 
   @override

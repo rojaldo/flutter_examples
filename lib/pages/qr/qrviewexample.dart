@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+  const QRViewExample({Key? key, required this.message}) : super(key: key);
+
+  final String message;
 
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
@@ -29,6 +31,12 @@ class _QRViewExampleState extends State<QRViewExample> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -45,7 +53,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                     Text(
                         'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                   else
-                    const Text('Scan a code'),
+                    Text('Scan a code:' + widget.message),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,6 +119,11 @@ class _QRViewExampleState extends State<QRViewExample> {
                       )
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: (() {
+                        Navigator.of(context).pop(result);
+                      }),
+                      child: Text('BACK'))
                 ],
               ),
             ),
